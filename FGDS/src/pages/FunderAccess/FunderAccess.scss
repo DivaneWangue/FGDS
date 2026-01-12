@@ -1,0 +1,126 @@
+@import '../../App.scss';
+
+.funder-page {
+  .page-header {
+    margin-bottom: $spacing-xl;
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: $spacing-sm;
+    }
+
+    p {
+      color: $text-light;
+    }
+  }
+
+  .funder-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: $spacing-lg;
+    margin-bottom: $spacing-xl;
+
+    .summary-card {
+      background: white;
+      padding: $spacing-lg;
+      border-radius: 8px;
+      border-left: 4px solid $info;
+      text-align: center;
+
+      h3 {
+        color: $text-light;
+        font-size: 12px;
+        text-transform: uppercase;
+        margin-bottom: $spacing-md;
+        letter-spacing: 1px;
+      }
+
+      p {
+        font-size: 28px;
+        font-weight: 700;
+        color: $info;
+      }
+    }
+  }
+
+  .card {
+    .projects-list {
+      .funder-project {
+        display: flex;
+        align-items: center;
+        gap: $spacing-lg;
+        padding: $spacing-lg;
+        border: 1px solid $border-color;
+        border-radius: 8px;
+        margin-bottom: $spacing-lg;
+        background: white;
+
+        .project-name {
+          min-width: 150px;
+
+          h3 {
+            margin: 0 0 $spacing-sm 0;
+            color: $text-dark;
+          }
+
+          p {
+            color: $text-light;
+            font-size: 12px;
+            margin: 0;
+          }
+        }
+
+        .project-details {
+          flex: 1;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: $spacing-lg;
+
+          .detail {
+            display: flex;
+            flex-direction: column;
+
+            .label {
+              color: $text-light;
+              font-size: 12px;
+              text-transform: uppercase;
+              margin-bottom: $spacing-xs;
+            }
+
+            .value {
+              color: $text-dark;
+              font-weight: 600;
+              font-size: 14px;
+            }
+
+            .progress-bar-full {
+              position: relative;
+              height: 8px;
+              background-color: $light-bg;
+              border-radius: 4px;
+              overflow: hidden;
+
+              .progress-bar {
+                height: 100%;
+                background: linear-gradient(90deg, $primary-color, $secondary-color);
+              }
+
+              .progress-text {
+                position: absolute;
+                top: -18px;
+                right: 0;
+                font-size: 12px;
+                font-weight: 600;
+                color: $text-dark;
+              }
+            }
+          }
+        }
+
+        button {
+          flex-shrink: 0;
+        }
+      }
+    }
+  }
+}

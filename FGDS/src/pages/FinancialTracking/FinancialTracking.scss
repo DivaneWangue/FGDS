@@ -1,0 +1,106 @@
+@import '../../App.scss';
+
+.financial-page {
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-xl;
+  }
+
+  .grid {
+    margin-bottom: $spacing-xl;
+
+    .financial-card {
+      background: white;
+      padding: $spacing-lg;
+      border-radius: 8px;
+      border-left: 4px solid $primary-color;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+      h3 {
+        color: $text-light;
+        font-size: 14px;
+        text-transform: uppercase;
+        margin-bottom: $spacing-md;
+        letter-spacing: 1px;
+      }
+
+      .amount {
+        font-size: 32px;
+        font-weight: 700;
+        color: $text-dark;
+        margin-bottom: $spacing-sm;
+
+        &.success {
+          color: $success;
+        }
+      }
+
+      small {
+        color: $text-light;
+        font-size: 12px;
+      }
+    }
+  }
+
+  .card {
+    margin-bottom: $spacing-xl;
+
+    h2 {
+      margin-bottom: $spacing-lg;
+      font-size: 18px;
+    }
+
+    .budget-table {
+      overflow-x: auto;
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+
+        thead {
+          background-color: $light-bg;
+          border-bottom: 2px solid $border-color;
+
+          th {
+            padding: $spacing-md;
+            text-align: left;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: $text-dark;
+          }
+        }
+
+        tbody {
+          tr {
+            border-bottom: 1px solid $border-color;
+
+            &:hover {
+              background-color: $light-bg;
+            }
+
+            td {
+              padding: $spacing-md;
+              color: $text-dark;
+
+              .progress {
+                background-color: #e0e0e0;
+                height: 6px;
+                border-radius: 3px;
+                overflow: hidden;
+                margin-bottom: $spacing-sm;
+
+                div {
+                  background: linear-gradient(90deg, $primary-color, $secondary-color);
+                  height: 100%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

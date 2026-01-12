@@ -1,0 +1,231 @@
+@import '../../App.scss';
+
+.dashboard {
+  .dashboard-header {
+    margin-bottom: $spacing-xl;
+
+    h1 {
+      font-size: 32px;
+      color: $text-dark;
+      margin-bottom: $spacing-sm;
+    }
+
+    p {
+      color: $text-light;
+      font-size: 16px;
+    }
+  }
+
+  .grid {
+    margin-bottom: $spacing-xl;
+  }
+
+  .stat-card {
+    background: white;
+    border-radius: 8px;
+    padding: $spacing-lg;
+    display: flex;
+    align-items: center;
+    gap: $spacing-lg;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid $border-color;
+    transition: $transition;
+
+    &:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .stat-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+
+      &.blue {
+        background-color: rgba(52, 152, 219, 0.2);
+        color: #3498db;
+      }
+
+      &.green {
+        background-color: rgba(46, 204, 113, 0.2);
+        color: $primary-color;
+      }
+
+      &.orange {
+        background-color: rgba(243, 156, 18, 0.2);
+        color: #f39c12;
+      }
+
+      &.purple {
+        background-color: rgba(155, 89, 182, 0.2);
+        color: #9b59b6;
+      }
+    }
+
+    .stat-content {
+      flex: 1;
+
+      .stat-label {
+        color: $text-light;
+        font-size: 14px;
+        margin-bottom: $spacing-sm;
+      }
+
+      .stat-value {
+        font-size: 28px;
+        font-weight: 700;
+        color: $text-dark;
+        margin-bottom: $spacing-sm;
+      }
+
+      .stat-change {
+        font-size: 12px;
+        font-weight: 600;
+
+        &.positive {
+          color: $success;
+        }
+
+        &.negative {
+          color: $danger;
+        }
+      }
+    }
+  }
+
+  .dashboard-charts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: $spacing-lg;
+    margin-bottom: $spacing-xl;
+
+    .chart-container {
+      background: white;
+      border-radius: 8px;
+      padding: $spacing-lg;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      border: 1px solid $border-color;
+
+      h2 {
+        font-size: 18px;
+        color: $text-dark;
+        margin-bottom: $spacing-lg;
+        font-weight: 600;
+      }
+
+      .activities-list {
+        .activity-item {
+          display: flex;
+          align-items: center;
+          gap: $spacing-md;
+          padding: $spacing-md;
+          border-bottom: 1px solid $border-color;
+          transition: $transition;
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          &:hover {
+            background-color: $light-bg;
+          }
+
+          .activity-icon {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+          }
+
+          .activity-details {
+            flex: 1;
+
+            .activity-title {
+              font-weight: 600;
+              color: $text-dark;
+              margin-bottom: $spacing-xs;
+            }
+
+            .activity-date {
+              font-size: 12px;
+              color: $text-light;
+            }
+          }
+
+          .activity-status {
+            padding: $spacing-xs $spacing-sm;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            background-color: rgba($primary-color, 0.1);
+            color: $primary-color;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+
+  .kpi-section {
+    h2 {
+      margin-bottom: $spacing-lg;
+      font-size: 20px;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: $spacing-lg;
+
+      .kpi-item {
+        padding: $spacing-lg;
+        border-left: 4px solid $primary-color;
+        background: linear-gradient(135deg, rgba($primary-color, 0.05) 0%, transparent 100%);
+
+        .kpi-label {
+          color: $text-light;
+          font-size: 12px;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          margin-bottom: $spacing-sm;
+        }
+
+        .kpi-value {
+          font-size: 28px;
+          font-weight: 700;
+          color: $text-dark;
+          margin-bottom: $spacing-sm;
+        }
+
+        .kpi-trend {
+          color: $success;
+          font-size: 13px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $tablet) {
+  .dashboard {
+    .dashboard-charts {
+      grid-template-columns: 1fr;
+
+      .chart-container {
+        padding: $spacing-md;
+      }
+    }
+
+    .kpi-section .kpi-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}

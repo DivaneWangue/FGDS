@@ -1,0 +1,127 @@
+@import '../../App.scss';
+
+.sidebar {
+  width: 280px;
+  background: linear-gradient(135deg, $dark-bg 0%, #2c3e50 100%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: relative;
+  transition: $transition;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+
+  &.closed {
+    width: 80px;
+
+    .logo-text,
+    .menu-label {
+      display: none;
+    }
+
+    .sidebar-header {
+      justify-content: center;
+    }
+  }
+
+  .sidebar-header {
+    padding: $spacing-lg;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: $spacing-md;
+      cursor: pointer;
+
+      svg {
+        color: $primary-color;
+        flex-shrink: 0;
+      }
+
+      .logo-text {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: $primary-color;
+      }
+    }
+  }
+
+  .sidebar-menu {
+    flex: 1;
+    overflow-y: auto;
+    padding: $spacing-md 0;
+    scrollbar-width: thin;
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: $spacing-md;
+      padding: $spacing-md $spacing-lg;
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: $transition;
+      border-left: 3px solid transparent;
+      position: relative;
+
+      &:hover {
+        background-color: rgba($primary-color, 0.1);
+        color: white;
+      }
+
+      &.active {
+        background-color: rgba($primary-color, 0.2);
+        border-left-color: $primary-color;
+        color: $primary-color;
+      }
+
+      svg {
+        flex-shrink: 0;
+      }
+
+      .menu-label {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .hidden {
+        display: none;
+      }
+    }
+  }
+
+  .sidebar-footer {
+    padding: $spacing-md 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    .logout {
+      width: 100%;
+      border: none;
+      background: none;
+      color: rgba(255, 255, 255, 0.7);
+
+      &:hover {
+        background-color: rgba($danger, 0.2);
+        color: $danger;
+      }
+    }
+  }
+}
+
+@media (max-width: $tablet) {
+  .sidebar {
+    width: 60px;
+
+    .sidebar-header {
+      padding: $spacing-md;
+    }
+
+    .sidebar-menu .menu-item {
+      padding: $spacing-md $spacing-sm;
+    }
+  }
+}

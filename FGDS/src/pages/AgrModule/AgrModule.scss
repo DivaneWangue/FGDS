@@ -1,0 +1,110 @@
+@import '../../App.scss';
+
+.agr-page {
+  .page-header {
+    margin-bottom: $spacing-xl;
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: $spacing-sm;
+    }
+
+    p {
+      color: $text-light;
+    }
+  }
+
+  .agr-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: $spacing-lg;
+    margin-bottom: $spacing-xl;
+
+    .stat {
+      background: white;
+      padding: $spacing-lg;
+      border-radius: 8px;
+      border-left: 4px solid $primary-color;
+      text-align: center;
+
+      h3 {
+        color: $text-light;
+        font-size: 12px;
+        text-transform: uppercase;
+        margin-bottom: $spacing-md;
+        letter-spacing: 1px;
+      }
+
+      p {
+        font-size: 28px;
+        font-weight: 700;
+        color: $text-dark;
+      }
+    }
+  }
+
+  .card {
+    .agr-list {
+      .agr-item {
+        display: flex;
+        align-items: center;
+        gap: $spacing-lg;
+        padding: $spacing-lg;
+        border-bottom: 1px solid $border-color;
+        transition: $transition;
+
+        &:hover {
+          background-color: $light-bg;
+        }
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .agr-icon {
+          font-size: 40px;
+          width: 60px;
+          height: 60px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: rgba($primary-color, 0.1);
+          border-radius: 8px;
+          flex-shrink: 0;
+        }
+
+        .agr-info {
+          flex: 1;
+
+          h3 {
+            margin-bottom: $spacing-sm;
+            color: $text-dark;
+          }
+
+          p {
+            color: $text-light;
+            font-size: 14px;
+            margin: $spacing-xs 0;
+          }
+        }
+
+        .agr-revenue {
+          text-align: right;
+
+          .revenue-amount {
+            font-size: 24px;
+            font-weight: 700;
+            color: $primary-color;
+            margin: 0;
+          }
+
+          .revenue-label {
+            color: $text-light;
+            font-size: 12px;
+            margin: $spacing-xs 0 0 0;
+          }
+        }
+      }
+    }
+  }
+}

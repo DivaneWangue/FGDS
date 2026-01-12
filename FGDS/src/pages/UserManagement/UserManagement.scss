@@ -1,0 +1,184 @@
+@import '../../App.scss';
+
+.users-page {
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-xl;
+
+    h1 {
+      font-size: 28px;
+    }
+  }
+
+  .card {
+    margin-bottom: $spacing-xl;
+
+    h2 {
+      margin-bottom: $spacing-lg;
+      font-size: 18px;
+    }
+
+    .users-table {
+      overflow-x: auto;
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+
+        thead {
+          background-color: $light-bg;
+          border-bottom: 2px solid $border-color;
+
+          th {
+            padding: $spacing-lg;
+            text-align: left;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: $text-dark;
+          }
+        }
+
+        tbody {
+          tr {
+            border-bottom: 1px solid $border-color;
+            transition: $transition;
+
+            &:hover {
+              background-color: $light-bg;
+            }
+
+            td {
+              padding: $spacing-lg;
+              color: $text-dark;
+
+              .role-badge {
+                display: inline-block;
+                padding: $spacing-xs $spacing-md;
+                border-radius: 20px;
+                font-size: 12px;
+                font-weight: 600;
+                text-transform: capitalize;
+
+                &.role-primary {
+                  background-color: rgba($primary-color, 0.1);
+                  color: $primary-color;
+                }
+
+                &.role-blue {
+                  background-color: rgba(52, 152, 219, 0.1);
+                  color: #3498db;
+                }
+
+                &.role-green {
+                  background-color: rgba($success, 0.1);
+                  color: $success;
+                }
+
+                &.role-orange {
+                  background-color: rgba($warning, 0.1);
+                  color: $warning;
+                }
+
+                &.role-purple {
+                  background-color: rgba(155, 89, 182, 0.1);
+                  color: #9b59b6;
+                }
+              }
+
+              .status-badge {
+                padding: $spacing-xs $spacing-md;
+                border-radius: 20px;
+                font-size: 12px;
+                font-weight: 600;
+
+                &.active {
+                  background-color: rgba($success, 0.1);
+                  color: $success;
+                }
+              }
+
+              .actions {
+                display: flex;
+                gap: $spacing-sm;
+
+                .action-btn {
+                  background: none;
+                  border: none;
+                  color: $primary-color;
+                  cursor: pointer;
+                  padding: $spacing-sm;
+                  border-radius: 4px;
+                  transition: $transition;
+
+                  &:hover {
+                    background-color: rgba($primary-color, 0.1);
+                  }
+
+                  &.delete {
+                    color: $danger;
+
+                    &:hover {
+                      background-color: rgba($danger, 0.1);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.roles-info {
+      .roles-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: $spacing-lg;
+
+        .role-card {
+          padding: $spacing-lg;
+          border: 1px solid $border-color;
+          border-radius: 8px;
+          background: linear-gradient(135deg, rgba($primary-color, 0.05) 0%, transparent 100%);
+
+          h3 {
+            color: $text-dark;
+            margin-bottom: $spacing-md;
+            font-size: 16px;
+          }
+
+          p {
+            color: $text-light;
+            font-size: 13px;
+            line-height: 1.5;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $tablet) {
+  .users-page {
+    .page-header {
+      flex-direction: column;
+      gap: $spacing-lg;
+
+      h1 {
+        width: 100%;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+
+    .users-table {
+      overflow-x: auto;
+    }
+  }
+}

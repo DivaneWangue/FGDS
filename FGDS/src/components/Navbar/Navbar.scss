@@ -1,0 +1,157 @@
+@import '../../App.scss';
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-md $spacing-lg;
+  background-color: white;
+  border-bottom: 1px solid $border-color;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  .navbar-left {
+    display: flex;
+    align-items: center;
+    gap: $spacing-lg;
+
+    .menu-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: $text-dark;
+      display: none;
+      padding: $spacing-sm;
+
+      &:hover {
+        color: $primary-color;
+      }
+
+      @media (max-width: $tablet) {
+        display: flex;
+      }
+    }
+
+    .navbar-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: $text-dark;
+      margin: 0;
+    }
+  }
+
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: $spacing-lg;
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      background-color: $light-bg;
+      border-radius: 20px;
+      padding: $spacing-sm $spacing-md;
+
+      .search-input {
+        background: none;
+        border: none;
+        outline: none;
+        padding: $spacing-sm;
+        width: 200px;
+        color: $text-dark;
+
+        &::placeholder {
+          color: $text-light;
+        }
+      }
+    }
+
+    .navbar-icon {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: $text-dark;
+      padding: $spacing-sm;
+      border-radius: 50%;
+      transition: $transition;
+      position: relative;
+
+      &:hover {
+        background-color: $light-bg;
+        color: $primary-color;
+      }
+
+      .notification-badge {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: $danger;
+        color: white;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 700;
+      }
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: $spacing-md;
+      padding-left: $spacing-md;
+      border-left: 1px solid $border-color;
+
+      .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: $primary-color;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: $transition;
+
+        &:hover {
+          background-color: $secondary-color;
+        }
+      }
+
+      .user-role {
+        font-size: 14px;
+        color: $text-light;
+        text-transform: capitalize;
+      }
+    }
+  }
+}
+
+@media (max-width: $tablet) {
+  .navbar {
+    padding: $spacing-md;
+
+    .navbar-left {
+      gap: $spacing-md;
+
+      .navbar-title {
+        font-size: 18px;
+      }
+    }
+
+    .navbar-right {
+      gap: $spacing-md;
+
+      .search-box {
+        display: none;
+      }
+
+      .user-profile .user-role {
+        display: none;
+      }
+    }
+  }
+}

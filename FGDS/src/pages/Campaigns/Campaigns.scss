@@ -1,0 +1,96 @@
+@import '../../App.scss';
+
+.campaigns-page {
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-xl;
+
+    h1 {
+      font-size: 28px;
+      color: $text-dark;
+    }
+  }
+
+  .campaigns-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: $spacing-lg;
+
+    .campaign-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      border: 1px solid $border-color;
+      transition: $transition;
+
+      &:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .campaign-header {
+        padding: $spacing-lg;
+        border-bottom: 1px solid $border-color;
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+
+        h3 {
+          color: $text-dark;
+          font-size: 18px;
+          margin: 0;
+          flex: 1;
+        }
+
+        .campaign-status {
+          padding: $spacing-xs $spacing-md;
+          border-radius: 20px;
+          font-size: 12px;
+          font-weight: 600;
+          white-space: nowrap;
+          margin-left: $spacing-md;
+
+          &.active {
+            background-color: rgba($success, 0.1);
+            color: $success;
+          }
+
+          &.completed {
+            background-color: rgba($info, 0.1);
+            color: $info;
+          }
+        }
+      }
+
+      .campaign-body {
+        padding: $spacing-lg;
+
+        p {
+          margin: $spacing-sm 0;
+          color: $text-dark;
+          display: flex;
+          align-items: center;
+          gap: $spacing-sm;
+
+          strong {
+            color: $text-dark;
+          }
+        }
+      }
+
+      .campaign-actions {
+        padding: $spacing-lg;
+        border-top: 1px solid $border-color;
+        display: flex;
+        gap: $spacing-md;
+
+        button {
+          flex: 1;
+        }
+      }
+    }
+  }
+}
