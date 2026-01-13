@@ -6,7 +6,7 @@ export const useAuth = () => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(false)
 
-  const login = useCallback(async (email, password) => {
+  const login = useCallback(async (email) => {
     setLoading(true)
     try {
       // Simule un appel API
@@ -36,7 +36,7 @@ export const useProjects = () => {
     { id: 1, title: 'REPREHREC', status: 'active', funder: 'AFD', budget: 150000, progress: 75 },
     { id: 2, title: 'ABICOM', status: 'active', funder: 'UE', budget: 120000, progress: 60 },
   ])
-  const [loading, setLoading] = useState(false)
+  const [loading] = useState(false)
 
   const addProject = useCallback((project) => {
     setProjects(prev => [...prev, { ...project, id: Date.now() }])
@@ -57,6 +57,10 @@ export const useProjects = () => {
 export const useNotifications = () => {
   const [notifications, setNotifications] = useState([])
 
+  const removeNotification = useCallback((id) => {
+    setNotifications(prev => prev.filter(n => n.id !== id))
+  }, [])
+
   const addNotification = useCallback((message, type = 'info', duration = 3000) => {
     const id = Date.now()
     setNotifications(prev => [...prev, { id, message, type }])
@@ -68,11 +72,7 @@ export const useNotifications = () => {
     }
 
     return id
-  }, [])
-
-  const removeNotification = useCallback((id) => {
-    setNotifications(prev => prev.filter(n => n.id !== id))
-  }, [])
+  }, [removeNotification])
 
   return { notifications, addNotification, removeNotification }
 }

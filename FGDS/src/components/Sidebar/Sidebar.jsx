@@ -15,7 +15,6 @@ import {
 import './Sidebar.scss'
 
 const Sidebar = ({ isOpen, userRole }) => {
-  const [expandedMenu, setExpandedMenu] = React.useState(null)
 
   const menuItems = [
     { icon: LayoutDashboard, label: 'Tableau de bord', path: '/', role: ['admin', 'chef', 'animateur', 'financier', 'bailleur'] },
@@ -29,10 +28,6 @@ const Sidebar = ({ isOpen, userRole }) => {
   ]
 
   const filteredMenuItems = menuItems.filter(item => item.role.includes(userRole))
-
-  const toggleMenu = (label) => {
-    setExpandedMenu(expandedMenu === label ? null : label)
-  }
 
   return (
     <aside className={`sidebar ${isOpen ? 'open' : 'closed'}`}>

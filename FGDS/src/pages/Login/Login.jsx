@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Leaf, Eye, EyeOff } from 'lucide-react'
+import { Leaf, Eye, EyeOff, AlertCircle } from 'lucide-react'
 import './Login.scss'
 
 const Login = ({ onLogin }) => {
@@ -7,13 +7,34 @@ const Login = ({ onLogin }) => {
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const handleLogin = async (e) => {
     e.preventDefault()
+    setError('')
     setLoading(true)
+
+    // Validation simple
+    if (!email || !password) {
+      setError('Veuillez remplir tous les champs')
+      setLoading(false)
+      return
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setError('Veuillez entrer une adresse e-mail valide')
+      setLoading(false)
+      return
+    }
+
     // Simulate API call
     setTimeout(() => {
-      onLogin()
+      // Simple demo: accept any valid email
+      const role = email.includes('admin') ? 'admin' : 
+                   email.includes('chef') ? 'chef' :
+                   email.includes('bailleur') ? 'bailleur' : 'animateur'
+      
+      onLogin(role)
       setLoading(false)
     }, 1000)
   }
@@ -27,6 +48,13 @@ const Login = ({ onLogin }) => {
           <p>Family Green Digital System</p>
         </div>
 
+        {error && (
+          <div className="error-message">
+            <AlertCircle size={20} />
+            {error}
+          </div>
+        )}
+
         <form onSubmit={handleLogin} className="login-form">
           <div className="form-group">
             <label htmlFor="email">Adresse e-mail</label>
@@ -37,6 +65,7 @@ const Login = ({ onLogin }) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              disabled={loading}
             />
           </div>
 
@@ -50,11 +79,13 @@ const Login = ({ onLogin }) => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                disabled={loading}
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
                 className="password-toggle"
+                disabled={loading}
               >
                 {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
               </button>
@@ -63,7 +94,7 @@ const Login = ({ onLogin }) => {
 
           <div className="remember-forgot">
             <label>
-              <input type="checkbox" />
+              <input type="checkbox" disabled={loading} />
               Se souvenir de moi
             </label>
             <a href="#forget">Mot de passe oublié ?</a>
@@ -76,6 +107,16 @@ const Login = ({ onLogin }) => {
 
         <div className="login-footer">
           <p>Pas encore de compte ? <a href="#signup">S'inscrire</a></p>
+        </div>
+
+        <div className="demo-info">
+          <p className="demo-title">Demo: Try these emails:</p>
+          <ul>
+            <li>admin@example.com - Admin role</li>
+            <li>chef@example.com - Chef de projet role</li>
+            <li>bailleur@example.com - Bailleur role</li>
+            <li>animateur@example.com - Animateur role</li>
+          </ul>
         </div>
       </div>
 

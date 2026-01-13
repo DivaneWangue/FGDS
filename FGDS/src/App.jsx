@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.scss'
 import Sidebar from './components/Sidebar/Sidebar'
 import Navbar from './components/Navbar/Navbar'
+import Toast from './components/Toast/Toast'
 import Dashboard from './pages/Dashboard/Dashboard'
 import Projects from './pages/Projects/Projects'
 import Campaigns from './pages/Campaigns/Campaigns'
@@ -12,14 +13,19 @@ import FunderAccess from './pages/FunderAccess/FunderAccess'
 import FieldCollection from './pages/FieldCollection/FieldCollection'
 import UserManagement from './pages/UserManagement/UserManagement'
 import Login from './pages/Login/Login'
+import { ToastProvider, useToast } from './hooks/useToast.jsx'
 
-function App() {
+function AppContent() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [userRole, setUserRole] = useState('admin')
+  const { toasts, removeToast } = useToast()
 
   if (!isLoggedIn) {
-    return <Login onLogin={() => setIsLoggedIn(true)} />
+    return <Login onLogin={(role) => {
+      setIsLoggedIn(true)
+      setUserRole(role || 'admin')
+    }} />
   }
 
   return (
@@ -27,7 +33,7 @@ function App() {
       <div className="app-container">
         <Sidebar isOpen={sidebarOpen} userRole={userRole} />
         <div className="main-content">
-          <Navbar onMenuToggle={() => setSidebarOpen(!sidebarOpen)} userRole={userRole} />
+          <Navbar onMenuToggle={() => setSidebarOpen(!sidebarOpen)} userRole={userRole} onLogout={() => setIsLoggedIn(false)} />
           <div className="page-content">
             <Routes>
               <Route path="/" element={<Dashboard userRole={userRole} />} />
@@ -42,7 +48,16 @@ function App() {
           </div>
         </div>
       </div>
+      <Toast toasts={toasts} onRemove={removeToast} />
     </Router>
+  )
+}
+
+function App() {
+  return (
+    <ToastProvider>
+      <AppContent />
+    </ToastProvider>
   )
 }
 

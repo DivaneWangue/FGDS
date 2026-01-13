@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { MapPin, Camera, Wifi, WifiOff } from 'lucide-react'
 import './FieldCollection.scss'
 
-const FieldCollection = ({ userRole }) => {
-  const [isOnline, setIsOnline] = useState(true)
+const FieldCollection = () => {
+  const [isOnline] = useState(true)
   const [forms] = useState([
     { id: 1, title: 'Suivi activité reboisement', location: 'Zone Littoral', date: '2024-01-10', status: 'synced' },
     { id: 2, title: 'Données bénéficiaires', location: 'Zone Centre', date: '2024-01-09', status: 'pending' },

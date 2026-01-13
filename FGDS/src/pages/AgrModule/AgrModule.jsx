@@ -1,7 +1,7 @@
 import React from 'react'
 import './AgrModule.scss'
 
-const AgrModule = ({ userRole }) => {
+const AgrModule = () => {
   const agrProjects = [
     { id: 1, name: 'BioFerNa Production Zone 1', location: 'Littoral', production: 5000, revenue: 125000 },
     { id: 2, name: 'BioFerNa Production Zone 2', location: 'Centre', production: 3500, revenue: 87500 },

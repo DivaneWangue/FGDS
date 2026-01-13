@@ -1,7 +1,7 @@
 import React from 'react'
 import './FunderAccess.scss'
 
-const FunderAccess = ({ userRole }) => {
+const FunderAccess = () => {
   const fundedProjects = [
     { id: 1, name: 'REPREHREC', budget: 150000, spent: 112500, progress: 75, startDate: '2023-01-15' },
     { id: 2, name: 'ABICOM', budget: 120000, spent: 72000, progress: 60, startDate: '2023-06-01' },

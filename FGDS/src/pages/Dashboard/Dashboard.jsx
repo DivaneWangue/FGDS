@@ -4,11 +4,29 @@ import {
   XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from 'recharts'
 import {
-  Folder, Megaphone, TrendingUp, Users, Zap, DollarSign
+  Folder, Megaphone, TrendingUp, Users, Zap, DollarSign, Download, FileText
 } from 'lucide-react'
 import './Dashboard.scss'
 
-const Dashboard = ({ userRole }) => {
+const StatCard = ({ icon, title, value, change, color }) => {
+  const Icon = icon
+  return (
+    <div className="stat-card">
+      <div className={`stat-icon ${color}`}>
+        <Icon size={28} />
+      </div>
+    <div className="stat-content">
+      <p className="stat-label">{title}</p>
+      <h3 className="stat-value">{value}</h3>
+      <span className={`stat-change ${change >= 0 ? 'positive' : 'negative'}`}>
+        {change >= 0 ? '+' : ''}{change}%
+      </span>
+    </div>
+  </div>
+  )
+}
+
+const Dashboard = () => {
   // Données simulées
   const projectStats = {
     total: 12,
@@ -39,22 +57,23 @@ const Dashboard = ({ userRole }) => {
     { category: 'Autres', value: 280 }
   ]
 
-  const COLORS = ['#2ecc71', '#3498db', '#f39c12', '#e74c3c']
+  // Données bailleurs
+  const bailleurs = [
+    { id: 1, name: 'AFD', totalInvested: 150000, spent: 112500, projects: 5, execution: 75 },
+    { id: 2, name: 'UE', totalInvested: 120000, spent: 72000, projects: 4, execution: 60 },
+    { id: 3, name: 'Banque Mondiale', totalInvested: 100000, spent: 85000, projects: 2, execution: 85 },
+    { id: 4, name: 'FIDA', totalInvested: 80000, spent: 48000, projects: 3, execution: 60 },
+  ]
 
-  const StatCard = ({ icon: Icon, title, value, change, color }) => (
-    <div className="stat-card">
-      <div className={`stat-icon ${color}`}>
-        <Icon size={28} />
-      </div>
-      <div className="stat-content">
-        <p className="stat-label">{title}</p>
-        <h3 className="stat-value">{value}</h3>
-        <span className={`stat-change ${change >= 0 ? 'positive' : 'negative'}`}>
-          {change >= 0 ? '+' : ''}{change}%
-        </span>
-      </div>
-    </div>
-  )
+  const projectsByFunder = [
+    { name: 'REPREHREC', funder: 'AFD', budget: 50000, spent: 37500, execution: 75 },
+    { name: 'ABICOM', funder: 'UE', budget: 60000, spent: 36000, execution: 60 },
+    { name: 'BioFerNa', funder: 'AFD', budget: 40000, spent: 32000, execution: 80 },
+    { name: 'Production Durables', funder: 'Banque Mondiale', budget: 80000, spent: 68000, execution: 85 },
+    { name: 'Formation Jeunes', funder: 'FIDA', budget: 30000, spent: 18000, execution: 60 },
+  ]
+
+  const COLORS = ['#2ecc71', '#3498db', '#f39c12', '#e74c3c']
 
   return (
     <div className="dashboard">
@@ -186,6 +205,86 @@ const Dashboard = ({ userRole }) => {
               <span className="activity-status">Validé</span>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Section Bailleurs */}
+      <div className="card bailleurs-section">
+        <h2>Aperçu des bailleurs</h2>
+        <div className="bailleurs-grid">
+          {bailleurs.map((bailleur) => (
+            <div key={bailleur.id} className="bailleur-card">
+              <h3>{bailleur.name}</h3>
+              <div className="bailleur-stat">
+                <span className="label">Investissement total</span>
+                <span className="value">{bailleur.totalInvested.toLocaleString()} €</span>
+              </div>
+              <div className="bailleur-stat">
+                <span className="label">Dépensé</span>
+                <span className="value">{bailleur.spent.toLocaleString()} €</span>
+              </div>
+              <div className="bailleur-stat">
+                <span className="label">Projets financés</span>
+                <span className="value">{bailleur.projects}</span>
+              </div>
+              <div className="bailleur-progress">
+                <span className="label">Exécution</span>
+                <div className="progress-bar">
+                  <div className="progress-fill" style={{ width: `${bailleur.execution}%` }}></div>
+                </div>
+                <span className="percentage">{bailleur.execution}%</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Projets par bailleur */}
+      <div className="card funder-projects-section">
+        <h2>Projets financés par bailleur</h2>
+        <div className="funder-projects-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Projet</th>
+                <th>Bailleur</th>
+                <th>Budget</th>
+                <th>Dépensé</th>
+                <th>Exécution</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {projectsByFunder.map((project, index) => (
+                <tr key={index}>
+                  <td><strong>{project.name}</strong></td>
+                  <td>{project.funder}</td>
+                  <td>{project.budget.toLocaleString()} €</td>
+                  <td>{project.spent.toLocaleString()} €</td>
+                  <td>
+                    <div className="progress-cell">
+                      <div className="progress-bar">
+                        <div className="progress-fill" style={{ width: `${project.execution}%` }}></div>
+                      </div>
+                      <span>{project.execution}%</span>
+                    </div>
+                  </td>
+                  <td>
+                    <button 
+                      className="btn-small" 
+                      title="Télécharger le rapport"
+                      onClick={() => {
+                        // TODO: Implémenter le téléchargement du rapport
+                        console.log(`Téléchargement du rapport pour ${project.name}`)
+                      }}
+                    >
+                      <Download size={16} />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
 

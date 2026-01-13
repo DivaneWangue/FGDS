@@ -1,8 +1,10 @@
-import React from 'react'
-import { Menu, Bell, User, Settings } from 'lucide-react'
+import React, { useState } from 'react'
+import { Menu, Bell, User, Settings, LogOut } from 'lucide-react'
 import './Navbar.scss'
 
-const Navbar = ({ onMenuToggle, userRole }) => {
+const Navbar = ({ onMenuToggle, userRole, onLogout }) => {
+  const [showUserMenu, setShowUserMenu] = useState(false)
+
   return (
     <header className="navbar">
       <div className="navbar-left">
@@ -31,10 +33,34 @@ const Navbar = ({ onMenuToggle, userRole }) => {
         </button>
 
         <div className="user-profile">
-          <div className="user-avatar">
-            <User size={20} />
-          </div>
-          <span className="user-role">{userRole}</span>
+          <button className="user-button" onClick={() => setShowUserMenu(!showUserMenu)}>
+            <div className="user-avatar">
+              <User size={20} />
+            </div>
+            <span className="user-role">{userRole}</span>
+          </button>
+
+          {showUserMenu && (
+            <div className="user-menu">
+              <button onClick={() => {
+                setShowUserMenu(false)
+              }}>
+                <User size={16} /> Mon profil
+              </button>
+              <button onClick={() => {
+                setShowUserMenu(false)
+              }}>
+                <Settings size={16} /> Paramètres
+              </button>
+              <div className="menu-divider"></div>
+              <button onClick={() => {
+                setShowUserMenu(false)
+                onLogout && onLogout()
+              }} className="logout-btn">
+                <LogOut size={16} /> Déconnexion
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </header>
